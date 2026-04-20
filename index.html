@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Q-pid｜福岡の大学生限定マッチングアプリ</title>
+  <meta name="description" content="Q-pidは福岡の大学生だけが使える、安心・安全なマッチングアプリ。学生証認証で本物の出会いを。" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Hiragino Sans', sans-serif;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    /* ─── Hero ─── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #0f3460 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 50%, rgba(233,30,99,0.12) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 30%, rgba(233,30,99,0.08) 0%, transparent 40%);
+      animation: drift 20s ease-in-out infinite;
+    }
+
+    @keyframes drift {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(-3%, 2%); }
+    }
+
+    .hero-content { position: relative; z-index: 1; max-width: 640px; }
+
+    .logo {
+      font-size: 72px;
+      font-weight: 800;
+      color: #E91E63;
+      letter-spacing: -2px;
+      margin-bottom: 8px;
+      text-shadow: 0 0 40px rgba(233,30,99,0.3);
+    }
+
+    .tagline {
+      font-size: 20px;
+      color: rgba(255,255,255,0.85);
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      font-size: 15px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.7;
+      margin-bottom: 48px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: #E91E63;
+      color: #fff;
+      font-size: 17px;
+      font-weight: 700;
+      padding: 16px 48px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: all 0.3s;
+      box-shadow: 0 4px 24px rgba(233,30,99,0.4);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(233,30,99,0.5);
+    }
+
+    .cta-note {
+      font-size: 12px;
+      color: rgba(255,255,255,0.35);
+      margin-top: 16px;
+    }
+
+    /* ─── Universities ─── */
+    .universities {
+      padding: 80px 24px;
+      background: #fff;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 12px;
+    }
+
+    .section-sub {
+      font-size: 14px;
+      color: #999;
+      margin-bottom: 48px;
+    }
+
+    .uni-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .uni-tag {
+      background: #f8f8f8;
+      border: 1px solid #eee;
+      border-radius: 40px;
+      padding: 12px 28px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #444;
+      transition: all 0.3s;
+    }
+
+    .uni-tag:hover {
+      background: #FCE4EC;
+      border-color: #E91E63;
+      color: #E91E63;
+    }
+
+    /* ─── Features ─── */
+    .features {
+      padding: 80px 24px;
+      background: #fafafa;
+      text-align: center;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .feature-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 36px 28px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+      transition: transform 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .feature-emoji {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    .feature-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 8px;
+    }
+
+    .feature-desc {
+      font-size: 14px;
+      color: #888;
+      line-height: 1.7;
+    }
+
+    /* ─── How it works ─── */
+    .how {
+      padding: 80px 24px;
+      background: #fff;
+      text-align: center;
+    }
+
+    .steps {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .step {
+      flex: 1;
+      min-width: 180px;
+      max-width: 220px;
+    }
+
+    .step-number {
+      width: 48px;
+      height: 48px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #E91E63, #ff6090);
+      color: #fff;
+      font-size: 20px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+
+    .step-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 6px;
+    }
+
+    .step-desc {
+      font-size: 13px;
+      color: #999;
+      line-height: 1.6;
+    }
+
+    /* ─── CTA Bottom ─── */
+    .cta-bottom {
+      padding: 80px 24px;
+      background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+      text-align: center;
+    }
+
+    .cta-bottom .section-title {
+      color: #fff;
+    }
+
+    .cta-bottom .section-sub {
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 36px;
+    }
+
+    /* ─── Footer ─── */
+    footer {
+      padding: 32px 24px;
+      background: #111;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 16px;
+    }
+
+    .footer-links a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover { color: #E91E63; }
+
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(255,255,255,0.25);
+    }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 600px) {
+      .logo { font-size: 52px; }
+      .tagline { font-size: 17px; }
+      .section-title { font-size: 22px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .steps { gap: 24px; }
+    }
+
+    /* ─── Stars (decorative) ─── */
+    .star {
+      position: absolute;
+      background: #fff;
+      border-radius: 50%;
+      opacity: 0.3;
+      animation: twinkle 3s ease-in-out infinite;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 0.6; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <section class="hero" id="top">
+    <div class="hero-content">
+      <div class="logo">Q-pid</div>
+      <p class="tagline">福岡の大学生だけの、本気の出会い。</p>
+      <p class="subtitle">
+        学生証認証で安心・安全。<br />
+        同じ街で学ぶ仲間と、特別な出会いを見つけよう。
+      </p>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdO6TctZlebgjtujXu5Y9mLWrqzPON2xat-V6W56cIM7KodRw/viewform" class="cta-button" target="_blank" rel="noopener">
+        事前登録する（無料）
+      </a>
+      <p class="cta-note">リリース時に優先的にご案内します</p>
+    </div>
+    <script>
+      (function() {
+        const hero = document.querySelector('.hero');
+        for (let i = 0; i < 60; i++) {
+          const s = document.createElement('div');
+          s.className = 'star';
+          const size = Math.random() * 2 + 1;
+          s.style.width = size + 'px';
+          s.style.height = size + 'px';
+          s.style.left = Math.random() * 100 + '%';
+          s.style.top = Math.random() * 100 + '%';
+          s.style.animationDelay = Math.random() * 3 + 's';
+          s.style.animationDuration = (Math.random() * 3 + 2) + 's';
+          hero.appendChild(s);
+        }
+      })();
+    </script>
+  </section>
+
+  <!-- 対象大学 -->
+  <section class="universities">
+    <h2 class="section-title">対象大学</h2>
+    <p class="section-sub">現在、以下の大学の学生が対象です</p>
+    <div class="uni-grid">
+      <div class="uni-tag">九州大学</div>
+      <div class="uni-tag">福岡女子大学</div>
+      <div class="uni-tag">中村学園大学</div>
+      <div class="uni-tag">西南学院大学</div>
+      <div class="uni-tag">福岡看護大学</div>
+    </div>
+  </section>
+
+  <!-- 特徴 -->
+  <section class="features">
+    <h2 class="section-title">Q-pidの特徴</h2>
+    <p class="section-sub">大学生のために設計されたマッチングアプリ</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-emoji">🎓</div>
+        <div class="feature-title">大学生限定</div>
+        <div class="feature-desc">学生証認証で全員が大学生。安心して出会える環境です。</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-emoji">🔒</div>
+        <div class="feature-title">安心・安全</div>
+        <div class="feature-desc">本人確認・年齢確認済み。ブロック・通報機能も完備。</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-emoji">💘</div>
+        <div class="feature-title">相互マッチング</div>
+        <div class="feature-desc">お互いが「いいね」した時だけマッチ。気軽にスワイプしよう。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 使い方 -->
+  <section class="how">
+    <h2 class="section-title">はじめ方</h2>
+    <p class="section-sub">かんたん3ステップ</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-title">アカウント作成</div>
+        <div class="step-desc">メールアドレスとプロフィールを登録</div>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-title">学生証で認証</div>
+        <div class="step-desc">学生証の写真を提出して本人確認</div>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-title">スワイプ開始</div>
+        <div class="step-desc">気になる相手にいいねを送ろう</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Bottom -->
+  <section class="cta-bottom">
+    <h2 class="section-title">まもなくリリース</h2>
+    <p class="section-sub">事前登録で、リリース時に優先案内をお届けします</p>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdO6TctZlebgjtujXu5Y9mLWrqzPON2xat-V6W56cIM7KodRw/viewform" class="cta-button" target="_blank" rel="noopener">
+      事前登録する（無料）
+    </a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-links">
+      <a href="https://kishiyoshi1011.github.io/qpid-privacy-policy/">プライバシーポリシー</a>
+      <a href="mailto:qpid.official.app@gmail.com">お問い合わせ</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Q-pid. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
